@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/es/integration/react";
 import configureStore from "./redux/configureStore";
 const { persistor, store } = configureStore();
+import AppContainer from "./components/AppContainer";
 
 class App extends React.Component {
   state = {
@@ -25,9 +26,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <PersistGate persistor={persistor}>
-          <View style={styles.container}>
-            <Text>Open up App.js to start working on your app!</Text>
-          </View>
+          <AppContainer />
         </PersistGate>
       </Provider>
     );
@@ -55,14 +54,5 @@ class App extends React.Component {
     });
   };
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
 
 export default App;
