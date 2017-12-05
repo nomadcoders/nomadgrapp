@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
   textInput: {
     height: 50,
     borderColor: "#bbb",
-    borderWidth: 1,
+    borderWidth: StyleSheet.hairlineWidth,
     width: width - 80,
     borderRadius: 5,
     marginBottom: 15,
