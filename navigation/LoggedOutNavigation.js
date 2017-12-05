@@ -3,7 +3,10 @@ import LogInScreen from "../screens/LogInScreen";
 
 const LoggedOutNavigation = StackNavigator({
   LogIn: {
-    screen: LogInScreen
+    screen: LogInScreen,
+    navigationOptions: {
+      header: null
+    }
   }
 });
 
