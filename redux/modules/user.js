@@ -18,15 +18,15 @@ function setLogIn(token) {
   };
 }
 
-function setLogOut() {
-  return { type: LOG_OUT };
-}
-
 function setUser(user) {
   return {
     type: SET_USER,
     user
   };
+}
+
+function logOut() {
+  return { type: LOG_OUT };
 }
 
 // API Actions
