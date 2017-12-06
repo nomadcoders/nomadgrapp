@@ -11,7 +11,6 @@ const SET_USER = "SET_USER";
 
 // Action Creators
 
-<<<<<<< HEAD
 function setLogIn(token) {
   return {
     type: LOG_IN,
@@ -30,8 +29,6 @@ function logOut() {
   return { type: LOG_OUT };
 }
 
-=======
->>>>>>> 501350a... #4-11 LogIn with Username and Password part Two
 // API Actions
 function login(username, password) {
   return dispatch => {
