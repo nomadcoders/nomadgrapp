@@ -1,6 +1,6 @@
 import React from "react";
 import { View } from "react-native";
-import { TabNavigator } from "react-navigation";
+import { TabNavigator, TabBarBottom } from "react-navigation";
 import HomeRoute from "../routes/HomeRoute";
 import SearchRoute from "../routes/SearchRoute";
 import NotificationsRoute from "../routes/NotificationsRoute";
@@ -67,6 +67,18 @@ const TabsNavigation = TabNavigator(
     }
   },
   {
+    tabBarComponent: ({jumpToIndex, ...props, navigation}) => (
+        <TabBarBottom
+            {...props}
+            jumpToIndex={index => {
+                if(index === 2){
+                    navigation.navigate("TakePhoto")
+                } else {
+                    jumpToIndex(index)
+                }
+            }}
+        />
+    ),
     tabBarPosition: "bottom",
     tabBarOptions: {
       showLabel: false,
