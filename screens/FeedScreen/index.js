@@ -1,8 +1,4 @@
-import React from "react";
-import { View, Text } from "react-native";
+import { connect } from "react-redux";
+import Container from "./container";
 
-const FeedScreen = props => (
-  <Text onPress={() => props.navigation.navigate("Likes")}>Feed</Text>
-);
-
-export default FeedScreen;
+export default connect()(Container);
