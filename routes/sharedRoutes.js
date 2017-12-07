@@ -10,7 +10,13 @@ const sharedRoutes = {
   }
 };
 
-const sharedOptions = {};
+const sharedOptions = {
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: "#FBFBFB"
+    }
+  }
+};
 
 export { sharedOptions };
 
