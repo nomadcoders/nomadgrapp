@@ -18,7 +18,6 @@ const FeedScreen = props => (
         tintColor={"black"}
       />
     }
-    contentContainerStyle={styles.container}
   >
     <View style={styles.container}>
       {props.feed &&
