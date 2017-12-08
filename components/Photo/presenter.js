@@ -45,7 +45,11 @@ const Photo = props => (
       />
     </FadeIn>
     <View style={styles.photoMeta}>
-      <PhotoActions isLiked={props.is_liked} likeCount={props.like_count} />
+      <PhotoActions
+        isLiked={props.is_liked}
+        likeCount={props.like_count}
+        handlePress={props.dispatchLike}
+      />
       <View style={styles.comment}>
         <Text style={styles.commentAuthor}>
           {props.creator.username}{" "}
