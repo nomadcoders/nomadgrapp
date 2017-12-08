@@ -22,6 +22,8 @@ class SearchBar extends Component {
           onChangeText={this._changeText}
           value={term}
           onEndEditing={this._handleSubmit}
+          autoCapitalize={"none"}
+          autoCorrect={false}
         />
       </View>
     );
