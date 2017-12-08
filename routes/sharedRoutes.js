@@ -1,6 +1,8 @@
 import React from "react";
 import LikesScreen from "../screens/LikesScreen";
 import CommentsScreen from "../screens/CommentsScreen";
+import ProfileDetailScreen from "../screens/ProfileDetailScreen";
+import PhotoScreen from "../screens/PhotoScreen";
 import NavButton from "../components/NavButton";
 
 const sharedRoutes = {
@@ -14,6 +16,15 @@ const sharedRoutes = {
     screen: CommentsScreen,
     navigationOptions: {
       headerTitle: "Comments"
+    }
+  },
+  ProfileDetail: {
+    screen: ProfileDetailScreen
+  },
+  Photo: {
+    screen: PhotoScreen,
+    navigationOptions: {
+      headerTitle: "Photo"
     }
   }
 };
