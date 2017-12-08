@@ -7,7 +7,7 @@ class Container extends Component {
     super(props);
     this.state = {
       isLiked: props.is_liked,
-      likeCount: 4
+      likeCount: props.like_count
     };
   }
   static propTypes = {
