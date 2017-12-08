@@ -43,10 +43,13 @@ const Notification = props => (
       {props.notification_type === "follow" && `started following you`}
     </Text>
     {props.notification_type === "follow" ? (
-      <TouchableOpacity onPressOut={() => {}} style={styles.touchable}>
+      <TouchableOpacity
+        onPressOut={props.handleFollowPress}
+        style={styles.touchable}
+      >
         <View style={styles.button}>
           <Text style={styles.btnText}>
-            {props.creator.following ? "Unfollow" : "Follow"}
+            {props.isFollowing ? "Unfollow" : "Follow"}
           </Text>
         </View>
       </TouchableOpacity>
@@ -123,7 +126,9 @@ Notification.propTypes = {
   }),
   notification_type: PropTypes.oneOf(["like", "follow", "comment"]).isRequired,
   to: PropTypes.number.isRequired,
-  updated_at: PropTypes.string.isRequired
+  updated_at: PropTypes.string.isRequired,
+  isFollowing: PropTypes.bool.isRequired,
+  handleFollowPress: PropTypes.func.isRequired
 };
 
-export default Notification;
+export default withNavigation(Notification);
