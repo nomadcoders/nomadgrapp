@@ -5,9 +5,12 @@ import {
   Text,
   ScrollView,
   RefreshControl,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from "react-native";
-import Photo from "../../components/Photo";
+import SquarePhoto from "../../components/SquarePhoto";
+
+const { width, height } = Dimensions.get("window");
 
 const SearchScreen = props => (
   <ScrollView
@@ -20,8 +23,15 @@ const SearchScreen = props => (
     }
   >
     <View style={styles.container}>
-      {props.feed &&
-        props.feed.map(photo => <Photo {...photo} key={photo.id} />)}
+      {props.search.length === 0 && props.searchingBy.length > 1 ? (
+        <Text style={styles.notFound}>
+          No images found for {props.searchingBy}
+        </Text>
+      ) : (
+        props.search.map(photo => (
+          <SquarePhoto key={photo.id} imageURL={photo.file} />
+        ))
+      )}
     </View>
   </ScrollView>
 );
@@ -29,7 +39,16 @@ const SearchScreen = props => (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "white"
+    flexDirection: "row",
+    flexWrap: "wrap"
+  },
+  notFound: {
+    color: "#bbb",
+    fontWeight: "600",
+    alignSelf: "center",
+    textAlign: "center",
+    width,
+    marginTop: 20
   }
 });
 

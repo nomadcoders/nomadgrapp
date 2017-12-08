@@ -11,7 +11,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    getEmptyFeed: () => {
+    getEmptySearch: () => {
       dispatch(photoActions.getSearch());
     },
     searchHashtag: hashtag => {
