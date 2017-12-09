@@ -8,7 +8,8 @@ class Container extends Component {
     refresh: PropTypes.func.isRequired
   };
   state = {
-    isFetching: true
+    isFetching: true,
+    mode: "grid"
   };
   componentDidMount = () => {
     const { profileObject } = this.props;
@@ -18,7 +19,6 @@ class Container extends Component {
       });
     }
   };
-
   componentWillReceiveProps = nextProps => {
     if (nextProps.profileObject) {
       this.setState({
@@ -26,12 +26,24 @@ class Container extends Component {
       });
     }
   };
-
   render() {
-    const { isFetching } = this.state;
-    console.log(this.props);
-    return <Profile {...this.props} isFetching={isFetching} />;
+    return (
+      <Profile
+        {...this.props}
+        {...this.state}
+        changeToList={this._changeToList}
+        changeToGrid={this._changeToGrid}
+      />
+    );
   }
+  _changeToList = () => {
+    this.setState({
+      mode: "list"
+    });
+  };
+  _changeToGrid = () => {
+    this.setState({ mode: "grid" });
+  };
 }
 
 export default Container;
