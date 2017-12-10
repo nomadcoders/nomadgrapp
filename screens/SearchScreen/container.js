@@ -15,6 +15,9 @@ class Container extends Component {
     searchHashtag: PropTypes.func.isRequired,
     search: PropTypes.array
   };
+  static defaultProps = {
+    search: []
+  };
   state = {
     searchingBy: "",
     isFetching: false
