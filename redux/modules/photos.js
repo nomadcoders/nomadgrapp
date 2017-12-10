@@ -133,7 +133,8 @@ function uploadPhoto(file, caption, location, tags) {
     name: `${uuidv1()}.jpg`
   });
   return (dispatch, getState) => {
-    fetch(`${API_URL}/images/`, {
+    const { user: { token } } = getState();
+    return fetch(`${API_URL}/images/`, {
       method: "POST",
       headers: {
         Authorization: `JWT ${token}`,
@@ -144,6 +145,8 @@ function uploadPhoto(file, caption, location, tags) {
       if (response.status === 401) {
         dispatch(userActions.logOut());
       } else if (response.ok) {
+        dispatch(getFeed());
+        dispatch(userActions.getOwnProfile());
         return true;
       } else {
         return false;
