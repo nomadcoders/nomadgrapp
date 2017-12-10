@@ -40,10 +40,17 @@ class Container extends Component {
   };
   _submit = () => {
     const { caption, location, tags } = this.state;
+    const { submit, navigation, navigation: { state: { params: { url } } }  } = this.props;
     if (caption && location && tags) {
       this.setState({
         isSubmitting: true
       });
+      const uploadResult =  await submit(url, caption, location, tags)
+      if(uploadResult){
+        navigation.goBack(null);
+        navigation.goBack(null);
+        navigation.goBack(null);
+      }
     } else {
       Alert.alert("All fields are required");
     }
