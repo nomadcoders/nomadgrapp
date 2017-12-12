@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
 FeedScreen.propTypes = {
   isFetching: PropTypes.bool.isRequired,
   refresh: PropTypes.func.isRequired,
-  feed: PropTypes.array.isRequired
+  feed: PropTypes.array
 };
 
 export default FeedScreen;

@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "nomadgrapp",
-    "description": "An empty new project",
+    "description":
+      "Making a clone of Instagram with React / React Native / Django!",
     "slug": "nomadgrapp",
     "privacy": "public",
     "sdkVersion": "23.0.0",
