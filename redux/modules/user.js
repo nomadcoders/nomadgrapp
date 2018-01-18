@@ -2,7 +2,7 @@
 
 import { API_URL, FB_APP_ID } from "../../constants";
 import { AsyncStorage } from "react-native";
-import { Facebook } from "expo";
+import { Permissions, Notifications, Facebook } from "expo";
 
 // Actions
 
@@ -189,6 +189,41 @@ function unfollowUser(userId) {
       } else if (!response.ok) {
         return false;
       }
+    });
+  };
+}
+
+async function registerForPush() {
+  const { status: existingStatus } = await Permissions.getAsync(
+    Permissions.NOTIFICATIONS
+  );
+  let finalStatus = existingStatus;
+
+  if (existingStatus !== "granted") {
+    // Android remote notification permissions are granted during the app
+    // install, so this will only ask on iOS
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+    finalStatus = status;
+  }
+
+  // Stop here if the user did not grant permissions
+  if (finalStatus !== "granted") {
+    return;
+  }
+
+  let token = await Notifications.getExpoPushTokenAsync();
+
+  return (dispatch, getState) => {
+    const { user: { token } } = getState();
+    return fetch(`${API_URL}/users/push/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `JWT ${token}`
+      },
+      body: JSON.stringify({
+        token
+      })
     });
   };
 }
