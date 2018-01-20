@@ -193,28 +193,25 @@ function unfollowUser(userId) {
   };
 }
 
-async function registerForPush() {
-  const { status: existingStatus } = await Permissions.getAsync(
-    Permissions.NOTIFICATIONS
-  );
-  let finalStatus = existingStatus;
-
-  if (existingStatus !== "granted") {
-    // Android remote notification permissions are granted during the app
-    // install, so this will only ask on iOS
-    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
-    finalStatus = status;
-  }
-
-  // Stop here if the user did not grant permissions
-  if (finalStatus !== "granted") {
-    return;
-  }
-
-  let token = await Notifications.getExpoPushTokenAsync();
-
-  return (dispatch, getState) => {
+function registerForPush() {
+  return async (dispatch, getState) => {
     const { user: { token } } = getState();
+    const { status: existingStatus } = await Permissions.getAsync(
+      Permissions.NOTIFICATIONS
+    );
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== "granted") {
+      const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
+      finalStatus = status;
+    }
+
+    if (finalStatus === "denied") {
+      return;
+    }
+
+    let pushToken = await Notifications.getExpoPushTokenAsync();
+
     return fetch(`${API_URL}/users/push/`, {
       method: "POST",
       headers: {
@@ -222,7 +219,7 @@ async function registerForPush() {
         Authorization: `JWT ${token}`
       },
       body: JSON.stringify({
-        token
+        token: pushToken
       })
     });
   };
@@ -297,7 +294,8 @@ const actionCreators = {
   getOwnProfile,
   followUser,
   unfollowUser,
-  getProfile
+  getProfile,
+  registerForPush
 };
 
 export { actionCreators };

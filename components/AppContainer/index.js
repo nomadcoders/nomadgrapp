@@ -18,6 +18,7 @@ const mapDispatchToProps = (dispatch, ownProps) => {
       dispatch(photoActions.getSearch());
       dispatch(userActions.getNotifications());
       dispatch(userActions.getOwnProfile());
+      dispatch(userActions.registerForPush());
     }
   };
 };
