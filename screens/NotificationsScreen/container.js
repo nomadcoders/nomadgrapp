@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import NotificationsScreen from "./presenter";
+import { Notifications } from "expo";
 
 class Container extends Component {
   static propTypes = {
@@ -13,6 +14,11 @@ class Container extends Component {
   static defaultProps = {
     notifications: []
   };
+
+  componentDidMount = () => {
+    Notifications.setBadgeNumberAsync(0);
+  };
+
   componentWillReceiveProps = nextProps => {
     if (nextProps.notifications) {
       this.setState({ isFetching: false });

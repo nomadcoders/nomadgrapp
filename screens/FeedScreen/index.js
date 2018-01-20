@@ -14,6 +14,13 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     getFeed: () => {
       dispatch(photoActions.getFeed());
+    },
+    initApp: () => {
+      dispatch(photoActions.getFeed());
+      dispatch(photoActions.getSearch());
+      dispatch(userActions.getNotifications());
+      dispatch(userActions.getOwnProfile());
+      dispatch(userActions.registerForPush());
     }
   };
 };

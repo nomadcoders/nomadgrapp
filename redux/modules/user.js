@@ -212,6 +212,8 @@ function registerForPush() {
 
     let pushToken = await Notifications.getExpoPushTokenAsync();
 
+    console.log(pushToken);
+
     return fetch(`${API_URL}/users/push/`, {
       method: "POST",
       headers: {
